@@ -1,4 +1,4 @@
-package mx.unam.fes.lista.Contador;
+package mx.unam.fes.arreglo.contador;
 
 import java.util.Random;
 

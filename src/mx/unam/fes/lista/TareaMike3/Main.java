@@ -1,4 +1,4 @@
-package mx.unam.fes.arreglo.TareaMike3;
+package mx.unam.fes.lista.TareaMike3;
 
 import java.util.Random;
 
