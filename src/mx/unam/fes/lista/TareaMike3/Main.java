@@ -17,15 +17,21 @@ public class Main {
 			listRandomNums.agregarCola(ram.nextInt(1,301));
 			
 		}
+		System.out.print("Lista de 1000 numeros: ");
+		listRandomNums.imprimir();
+		saberMayorYMenor(listRandomNums);
+		
+		
 		FileManage.write("src/data.csv", listRandomNums);
 		//ejercicio2
 		//obtener lista
 		ListaEnlazada<Integer> listaRecuperada = FileManage.read("src/data.csv");
 		//filtrar lista
 		listaRecuperada=main.filtrar(listaRecuperada, 30, 150);
+		System.out.print("Lista Recuperada:");
 		for (int i =0; i< listaRecuperada.getLongitud();i++)
 		{
-			System.out.println(listaRecuperada.obtenerNodo(i));
+			System.out.print(listaRecuperada.obtenerNodo(i) + ",");
 		}
 		
 		
@@ -73,6 +79,33 @@ public class Main {
 			}
 		}
 		return listaRango;
+	}
+	
+	public static void saberMayorYMenor(ListaEnlazada<Integer> lista)
+	{
+		// Inicialización
+				int numMayor = lista.getCabeza();
+				int numeroSegundoMayor = -1; 
+				int cout = 0;
+				
+				// Un solo recorrido para buscar ambos valores
+				while(cout < lista.getLongitud()) {
+					int actual = lista.obtenerNodo(cout);
+					
+					if (actual > numMayor) {
+						numeroSegundoMayor = numMayor; // El viejo mayor pasa a ser el segundo
+						numMayor = actual; // Actualizamos el nuevo mayor
+					} 
+					else if (actual > numeroSegundoMayor && actual < numMayor) {
+						numeroSegundoMayor = actual; // Actualizamos solo el segundo
+					}
+					
+					cout++;
+				}
+				System.out.printf("""
+						Numero mayor: %d
+						Numero segundoMayor: %d
+						""",numMayor,numeroSegundoMayor);
 	}
 	
 
