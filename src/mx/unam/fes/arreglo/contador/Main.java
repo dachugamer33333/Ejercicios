@@ -25,7 +25,7 @@ public class Main {
 		
 		// Inicialización
 		int numMayor = numeros.primero();
-		int numeroSegundoMayor = -1; // Seguro, ya que tus números generados van de 0 a 100
+		int numeroSegundoMayor = -1; // Seguro, ya que los números generados van de 0 a 100
 		int cout = 0;
 		
 		// Un solo recorrido para buscar ambos valores
