@@ -53,20 +53,22 @@ public class Main {
 			System.out.println("||lista ordenada||");
 			ListaDoblementeEnlazada<Integer> listaOrdenada = burbleSort(listanumeros, listanumeros.getLongitud());
 			listaOrdenada.imprimir();
-			ListaDoblementeEnlazada<Character> lineas = leerArchivo("/Users/dachu_dev/eclipse-workspace/Ejercicios/src/mx/unam/fes/listadoble/doc.txt");
-			lineas.imprimir();
+			System.out.println("||Bytes Leidos||");
+			ListaDoblementeEnlazada<Integer> lineas = leerArchivo("/home/dachudev/Descargas/tarea_pilar_5.pdf");
+			//lineas.imprimir();
+			guardarArchivo("/home/dachudev/archivos/datos.txt", lineas);
 	}
 	
-	public static ListaDoblementeEnlazada<Character> leerArchivo(String direccion)
+	public static ListaDoblementeEnlazada<Integer> leerArchivo(String direccion)
 	{
-		ListaDoblementeEnlazada<Character> listaRecuperada= new ListaDoblementeEnlazada<Character>();
+		ListaDoblementeEnlazada<Integer> listaRecuperada= new ListaDoblementeEnlazada<Integer>();
 
 		try {
 			FileInputStream fis = new FileInputStream(direccion);
 			int byteLeido;
 			while ((byteLeido = fis.read()) != -1) {
-                char c = (char) byteLeido;
-                listaRecuperada.agregarCola(c); 
+                
+                listaRecuperada.agregarCola(byteLeido); 
             }
 			
 			
@@ -95,11 +97,21 @@ public class Main {
 	    }
 	    return lista;
 	}
-	public static void guardarArchivo(String ruta,ListaDoblementeEnlazada<Character> lista)
+	public static void guardarArchivo(String ruta,ListaDoblementeEnlazada<Integer> lista)
 	{
-		try {
-			BufferedOutputStream br = new BufferedOutputStream(new FileOutputStream(ruta));
+		try(BufferedOutputStream br = new BufferedOutputStream(new FileOutputStream(ruta));) {
+			
+			int byteLeido;
+			for(int i = 0; i < lista.getLongitud();i++ )
+			{
+				byteLeido = lista.obtenerNodo(i);
+				br.write(byteLeido);
+			}
+			
 		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

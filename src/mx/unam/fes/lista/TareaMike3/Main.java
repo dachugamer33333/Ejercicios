@@ -3,7 +3,6 @@ package mx.unam.fes.lista.TareaMike3;
 import java.util.Random;
 
 import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
-import mx.unam.fes.estatico.Elemento;
 
 public class Main {
 
@@ -84,7 +83,7 @@ public class Main {
 	public static void saberMayorYMenor(ListaEnlazada<Integer> lista)
 	{
 		// Inicialización
-				int numMayor = lista.getCabeza();
+				int numMayor = lista.getDatoCabeza();
 				int numeroSegundoMayor = -1; 
 				int cout = 0;
 				
