@@ -1,5 +1,16 @@
 package mx.unam.fes.listadoble;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 import mx.unam.fes.dinamico.ListaDoble.ListaDoblementeEnlazada;
@@ -13,8 +24,9 @@ public class Main {
 		{
 			listanumeros.agregarCola(ran.nextInt(101));
 		}
+		System.out.println("||Lista de 1000 numeros aleatorios||");
 		listanumeros.imprimir();
-		System.out.println("-----------------------");
+		
 		// Inicialización
 		int numMayor = listanumeros.getCabeza();
 		int numeroSegundoMayor = -1;
@@ -41,6 +53,32 @@ public class Main {
 			System.out.println("||lista ordenada||");
 			ListaDoblementeEnlazada<Integer> listaOrdenada = burbleSort(listanumeros, listanumeros.getLongitud());
 			listaOrdenada.imprimir();
+			ListaDoblementeEnlazada<Character> lineas = leerArchivo("/Users/dachu_dev/eclipse-workspace/Ejercicios/src/mx/unam/fes/listadoble/doc.txt");
+			lineas.imprimir();
+	}
+	
+	public static ListaDoblementeEnlazada<Character> leerArchivo(String direccion)
+	{
+		ListaDoblementeEnlazada<Character> listaRecuperada= new ListaDoblementeEnlazada<Character>();
+
+		try {
+			FileInputStream fis = new FileInputStream(direccion);
+			int byteLeido;
+			while ((byteLeido = fis.read()) != -1) {
+                char c = (char) byteLeido;
+                listaRecuperada.agregarCola(c); 
+            }
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaRecuperada;
 	}
 	public static ListaDoblementeEnlazada<Integer> burbleSort(ListaDoblementeEnlazada<Integer> lista, int n) {
 	    for (int i = 0; i < n - 1; i++) {
@@ -56,5 +94,14 @@ public class Main {
 	        }
 	    }
 	    return lista;
+	}
+	public static void guardarArchivo(String ruta,ListaDoblementeEnlazada<Character> lista)
+	{
+		try {
+			BufferedOutputStream br = new BufferedOutputStream(new FileOutputStream(ruta));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

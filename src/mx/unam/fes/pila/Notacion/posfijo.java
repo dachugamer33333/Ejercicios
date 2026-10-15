@@ -59,4 +59,9 @@ public class posfijo {
 
         return pila.sacar();
     }
+	@Override
+	public String toString() {
+		return exprecionPosfija;
+	}
+    
 }
