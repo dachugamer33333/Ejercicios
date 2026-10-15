@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 import mx.unam.fes.dinamico.ListaDoble.ListaDoblementeEnlazada;
+import mx.unam.fes.dinamico.ListaDoble.Nodo;
 
 public class Main {
 
@@ -28,7 +29,7 @@ public class Main {
 		listanumeros.imprimir();
 		
 		// Inicialización
-		int numMayor = listanumeros.getCabeza();
+		int numMayor = listanumeros.getDatoCabeza();
 		int numeroSegundoMayor = -1;
 		int cout = 0;
 				
@@ -55,8 +56,8 @@ public class Main {
 			listaOrdenada.imprimir();
 			System.out.println("||Bytes Leidos||");
 			ListaDoblementeEnlazada<Integer> lineas = leerArchivo("/home/dachudev/Descargas/tarea_pilar_5.pdf");
-			//lineas.imprimir();
-			guardarArchivo("/home/dachudev/archivos/datos.txt", lineas);
+			lineas.imprimir();
+			guardarArchivo("/home/dachudev/archivos/datos.pdf", lineas);
 	}
 	
 	public static ListaDoblementeEnlazada<Integer> leerArchivo(String direccion)
@@ -102,10 +103,12 @@ public class Main {
 		try(BufferedOutputStream br = new BufferedOutputStream(new FileOutputStream(ruta));) {
 			
 			int byteLeido;
-			for(int i = 0; i < lista.getLongitud();i++ )
+			Nodo<Integer> actual = lista.getCabeza();
+			while(actual != null)
 			{
-				byteLeido = lista.obtenerNodo(i);
-				br.write(byteLeido);
+				
+				br.write(actual.getDato());
+				actual = actual.getSiguiente();
 			}
 			
 		} catch (FileNotFoundException e) {
