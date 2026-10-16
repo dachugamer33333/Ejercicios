@@ -1,9 +1,12 @@
-package mx.unam.fes.lista.TareaMike3;
+package mx.unam.fes.lista.tarea3mike;
 
 import java.util.Random;
 
 import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
-
+/**
+ * genera 1000 numeros aleatorios en una lista dice el mayor el segundo mayor y dice cuantas veces se repite el numero 
+ * ademas filtra los numeros del 30, 150 como lo pidio el ejercicio inicial del pdf
+ */
 public class Main {
 
 	public static void main(String[] args) {

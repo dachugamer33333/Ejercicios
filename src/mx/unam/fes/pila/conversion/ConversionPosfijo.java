@@ -2,6 +2,9 @@ package mx.unam.fes.pila.conversion;
 
 import mx.unam.fes.dinamico.Pila;
 
+/**
+ * Convierte una exprecion Interfija a Posfija
+ */
 public class ConversionPosfijo {
     private Pila<Character> pila = new Pila<>();
     private String exprecionInterfija;

@@ -15,7 +15,10 @@ import java.util.Random;
 
 import mx.unam.fes.dinamico.ListaDoble.ListaDoblementeEnlazada;
 import mx.unam.fes.dinamico.ListaDoble.Nodo;
-
+/**
+ * Genera 1000 numeros aleatorios en una listadoble y se indica cual es el mayor el segundo mayor,ordenar en burbuha fuardar cualquier archivo en la lista 
+ * despues volver a constuirla
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package mx.unam.fes.lista.TareaMike3;
+package mx.unam.fes.lista.tarea3mike;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
-
+/**
+ * es la modularizacion que permite al main funcionar
+ */
 public class FileManage {
 	public static <T> void write(String rute,ListaEnlazada<T> datos)
 	{

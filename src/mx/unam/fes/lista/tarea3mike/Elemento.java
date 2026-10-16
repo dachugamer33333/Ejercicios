@@ -1,4 +1,4 @@
-package mx.unam.fes.lista.TareaMike3;
+package mx.unam.fes.lista.tarea3mike;
 
 /**
  * Creo esta clase para almacenar un elemento genérico junto con el seguimiento de su cantidad de repeticiones.

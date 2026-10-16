@@ -1,9 +1,12 @@
 package mx.unam.fes.pila.Notacion;
 
-public class main {
-
+public class Main {
+	/**
+	 * Se realiza la operacion de posfijo 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		posfijo pos = new posfijo("42*4/5+");
+		Posfijo pos = new Posfijo("42*4/5+");
 		System.out.println("||Calculo Posfijo||");
 		System.out.println("Cadena posfija:" + pos);
 		

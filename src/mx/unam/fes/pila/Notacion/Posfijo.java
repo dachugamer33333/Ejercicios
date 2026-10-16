@@ -4,7 +4,7 @@ import mx.unam.fes.dinamico.Pila;
 /**
  * Creamos una clase para calcular porsfijo
  */
-public class posfijo {
+public class Posfijo {
     // La pila DEBE guardar los números intermedios calculados
     Pila<Double> pila = new Pila<>();
     String exprecionPosfija;
@@ -12,7 +12,7 @@ public class posfijo {
      * Es constructor recibe un dato y string y lo convierte a un arreglo de caracteres
      * @param String que recibe la clase y lo convierte a un arreglo de caracteres
      */
-    public posfijo(String dato) {
+    public Posfijo(String dato) {
         super();
         exprecionPosfija = dato.trim();
     }

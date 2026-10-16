@@ -1,7 +1,12 @@
 package mx.unam.fes.cola.estacionamiento;
 
 import mx.unam.fes.dinamico.Cola;
-
+/**
+ * es una clase que representa todos los comportamientos del estacionamiento 
+ * 1.generar una cantidad de espacios ocupados en una cola
+ * 2.permite sacar un numero especifico del estacionamiento
+ * 3.reordena la cola para que quede de manera acendente de nuevo
+ */
 public class Estacionamiento {
 	private Cola<Integer> estacionamiento = new Cola<>();
 	private int cupo;

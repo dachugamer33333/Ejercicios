@@ -4,7 +4,10 @@ import java.util.Random;
 
 import mx.unam.fes.estatico.Arreglo;
 import mx.unam.fes.exepciones.IndicieFueraExeption;
-
+/**
+ * genera 1000 en un arreglo para saber cual es el mayor y el segundo mayoir y dice cuantas
+ * veces se repite un numero
+ */
 public class Main {
 
 	public static void main(String[] args) throws IndicieFueraExeption {
