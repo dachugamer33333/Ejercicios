@@ -31,7 +31,33 @@ public class ConversionPosfijo {
         return c == '^' || c == '*' || c == '/' || c == '+' || c == '-';
     }
 
+    /**
+     * Decide si el operador que se esta leyendo debe desplazar de la pila al
+     * operador que esta en el tope.
+     *
+     * <p>Los operadores {@code +}, {@code -}, {@code *} y {@code /} son asociativos
+     * a la izquierda, por lo que se saca el tope cuando su prioridad es mayor o igual
+     * a la del operador actual. El operador {@code ^} es asociativo a la derecha, por
+     * lo que solo se saca el tope cuando su prioridad es estrictamente mayor.</p>
+     *
+     * @param operador operador que se esta leyendo de la expresion
+     * @param tope     simbolo que esta en el tope de la pila
+     * @return true si hay que sacar el tope antes de meter el operador
+     */
+    private boolean debeSacar(char operador, char tope) {
+        if (!esOperador(tope)) {
+            return false; // El paréntesis '(' no se saca en este paso
+        }
+        int prioridadOperador = prioridad(operador);
+        int prioridadTope = prioridad(tope);
+        if (prioridadOperador < prioridadTope) {
+            return true;
+        }
+        return prioridadOperador == prioridadTope && operador != '^';
+    }
+
     public String calcular() {
+        exprecionPosfija = ""; // Reiniciar por si el objeto se reutiliza
         while (!exprecionInterfija.isEmpty()) {
             char simboloizquierda = exprecionInterfija.charAt(0);
             exprecionInterfija = exprecionInterfija.substring(1);
@@ -52,7 +78,7 @@ public class ConversionPosfijo {
             } 
             // 4. Operador (^, *, /, +, -)
             else if (esOperador(simboloizquierda)) {
-                while (!pila.esVacia() && prioridad(simboloizquierda) <= prioridad(pila.recuperar())) {
+                while (!pila.esVacia() && debeSacar(simboloizquierda, pila.recuperar())) {
                     exprecionPosfija += pila.sacar();
                 }
                 pila.agregar(simboloizquierda);

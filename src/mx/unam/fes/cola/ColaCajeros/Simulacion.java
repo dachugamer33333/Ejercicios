@@ -35,7 +35,7 @@ import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
 	 */
 	public void start()
 	{
-		for(int i=0;i <= numeroSimulaciones;i++)
+		for(int i=0;i < numeroSimulaciones;i++)
 		{
 
 
@@ -79,7 +79,7 @@ import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
 	 * Avanza un ciclo de espera.
 	 *
 	 * <p>Por un lado, cada persona en la cola incrementa su tiempo de espera;
-	 * si una persona supera el umbral de 10, se abre una caja nueva.
+	 * si una persona supera el umbral de 15, se abre una caja nueva.
 	 * Por otro lado, cada caja ocupada reduce en 1 su tiempo restante de atencion.</p>
 	 */
 	public void esperar()
@@ -155,7 +155,7 @@ import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
 		System.out.printf("""
 				Cantidad de cajas : %d
 				Gente en cola     : %d
-				Tiempo Maximo     : %d
+				Tiempo Maximo     : %d min
 				Clientes Atendidos: %d
 				
 				
@@ -166,7 +166,7 @@ import mx.unam.fes.dinamico.ListaSimple.ListaEnlazada;
 		{
 			System.out.printf("""
 					Caja %d:
-						Tiempo trabajado: %d
+						Tiempo trabajado: %d min
 						\n
 					""",i,cajas.obtenerNodo(i).getTotalWorkTime());
 		}
