@@ -19,6 +19,8 @@ public class Main {
 			listRandomNums.agregarCola(ram.nextInt(1,301));
 			
 		}
+		System.out.println("--Lista simple--");
+
 		System.out.print("Lista de 1000 numeros: ");
 		listRandomNums.imprimir();
 		saberMayorYMenor(listRandomNums);

@@ -20,7 +20,7 @@ import mx.unam.fes.dinamico.ListaDoble.Nodo;
  * despues volver a constuirla
  */
 public class Main {
-
+	
 	public static void main(String[] args) {
 		ListaDoblementeEnlazada<Integer> listanumeros = new ListaDoblementeEnlazada<Integer>();
 		Random ran = new Random();
@@ -28,6 +28,8 @@ public class Main {
 		{
 			listanumeros.agregarCola(ran.nextInt(101));
 		}
+		System.out.println("--Lista Doble--");
+
 		System.out.println("||Lista de 1000 numeros aleatorios||");
 		listanumeros.imprimir();
 		
@@ -121,5 +123,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("||Se guardo documento||");
 	}
 }

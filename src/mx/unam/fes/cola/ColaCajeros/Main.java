@@ -13,6 +13,8 @@ public class Main {
 	 * @param args argumentos de linea de comandos (no se usan).
 	 */
 	public static void main(String[] args) {
+		System.out.println("--Simulacion Cajas--");
+
 		Simulacion simulacion = new Simulacion(1000);
 		simulacion.start();
 	}

@@ -23,6 +23,8 @@ public class Main {
 			numeros.insertar(c);
 		}
 		promedio=promedio/numeros.numElementos();
+		System.out.println("--Arreglo--");
+		System.out.println("||Lista original de numeros||");
 		numeros.imprimir();
 		
 		// Inicialización
@@ -72,9 +74,7 @@ public class Main {
 		System.out.println("Promedio:" + promedio);
 		contadorNumeros.imprimir();
 		
-		System.out.println("Mayor: " + numMayor + " | Segundo: " + numeroSegundoMayor);
-		System.out.println("Promedio:" + promedio);
-		contadorNumeros.imprimir();
+		
 
 	}
 
