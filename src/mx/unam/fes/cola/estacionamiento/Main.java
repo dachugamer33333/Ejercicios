@@ -2,60 +2,56 @@ package mx.unam.fes.cola.estacionamiento;
 
 import java.util.Random;
 
-import mx.unam.fes.dinamico.Cola;
-
 public class Main {
-    private static final Random rand = new Random(); 
+	private static final Random rand = new Random();
+	private static final int NUM_ITERACIONES = 10;
+
 	public static void main(String[] args) {
-		int numIteraciones = 3;
-		Estacionamiento esta = new Estacionamiento();
-		System.out.println("||Estacionamiento|| \n con cupo de 10 autos");
-		int numAgregar =0;
-		int numSacar=0;
-		for(int i =1; i<=numIteraciones;i++)
-		{
-			System.out.printf("||Vuelta %d|| \n" ,i);
-			if(seAgrega())
-			{
-				numAgregar=numeroAleatorio();
-				esta.Agregar(numAgregar);
-				System.out.printf("entra : %d \n",numAgregar);
-				
+		Estacionamiento esta = new Estacionamiento(10);
+		System.out.println("||Estacionamiento||");
+		System.out.printf("Cupo: %d autos%n", esta.getCupo());
+		int ultimoTicket = 0;
 
+		for (int i = 1; i <= NUM_ITERACIONES; i++) {
+			System.out.printf("%n||Vuelta %d||%n", i);
+
+			if (seAgrega()) {
+				int ticket = esta.agregar();
+				if (ticket == -1) {
+					System.out.println("No entra ningun auto: estacionamiento lleno.");
+				} else {
+					ultimoTicket = ticket;
+					System.out.printf("Entra el auto con ticket %d.%n", ticket);
+				}
+			} else {
+				System.out.println("No entra ningun auto.");
 			}
-			else
-			{
-				System.out.println("no entra ningun carro");
+
+			if (seSaca() && ultimoTicket > 0) {
+				int ticket = rand.nextInt(1, ultimoTicket + 1);
+				if (esta.sacarTicket(ticket)) {
+					System.out.printf("Sale el auto con ticket %d.%n", ticket);
+				} else {
+					System.out.printf("No esta el ticket %d.%n", ticket);
+				}
+			} else {
+				System.out.println("No sale ningun auto.");
 			}
-			System.out.print("Estacionamiento:");
+
+			System.out.print("Estacionamiento: ");
 			esta.imprimir();
-			
-			if(seSaca() && !esta.esVacia()) {
-				numSacar=numeroAleatorio();
-				esta.sacarTicket(numSacar);
-				System.out.printf("Sale : %d \n",numSacar);
-			}
-			else {
-				System.out.println("No sale ningun carro");
-			}
-			System.out.print("Estacionamiento:");
-			esta.imprimir();
-			
+			System.out.printf("Ocupados: %d | Libres: %d%n", esta.getLongitud(), esta.getLibres());
 		}
-		
 
-	}
-	public static boolean seAgrega()
-	{
-		return (rand.nextInt(101) >50)? true : false ;
-	}
-	public static boolean seSaca()
-	{
-		return (rand.nextInt(101) >50)? true : false ;
-	}
-	public static int numeroAleatorio()
-	{
-		return rand.nextInt(11) ;
+		System.out.printf("%nResumen final: %d ocupados, %d libres de %d.%n",
+				esta.getLongitud(), esta.getLibres(), esta.getCupo());
 	}
 
+	public static boolean seAgrega() {
+		return rand.nextBoolean();
+	}
+
+	public static boolean seSaca() {
+		return rand.nextBoolean();
+	}
 }
