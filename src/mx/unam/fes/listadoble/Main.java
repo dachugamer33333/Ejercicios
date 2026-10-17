@@ -53,7 +53,7 @@ public class Main {
                 """, numMayor, numeroSegundoMayor);
                 
         System.out.println("||lista ordenada||");
-        ListaDoblementeEnlazada<Integer> listaOrdenada = burbleSort(listanumeros, listanumeros.getLongitud());
+        ListaDoblementeEnlazada<Integer> listaOrdenada = bubbleSort(listanumeros);
         listaOrdenada.imprimir();
 
         // --- LECTURA Y RECONSTRUCCIÓN DE CUALQUIER ARCHIVO EN LA CARPETA ---
@@ -71,7 +71,7 @@ public class Main {
                         
                         // 1. Leer los bytes del archivo y meterlos a la lista doble
                         ListaDoblementeEnlazada<Integer> lineas = leerArchivo(archivo.getAbsolutePath());
-                        lineas.imprimir();
+                        
                         
                         // 2. Volver a construir el archivo a partir de la lista
                         guardarArchivo(archivo.getAbsolutePath(), lineas);
@@ -85,19 +85,38 @@ public class Main {
         }
     }
 
-    public static ListaDoblementeEnlazada<Integer> burbleSort(ListaDoblementeEnlazada<Integer> lista, int n) {
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int valorI = lista.obtenerNodo(i);
-                int valorJ = lista.obtenerNodo(j);
-
-                if (valorI > valorJ) {
-                    // Intercambio de valores en las posiciones i y j
-                    lista.reemplazarEnIndice(valorJ, i);
-                    lista.reemplazarEnIndice(valorI, j);
-                }
-            }
+    /**
+     * Ordena la lista de menor a mayor con el algoritmo de burbuja.
+     * Recorre los nodos con sus referencias en lugar de usar obtenerNodo(indice),
+     * por lo que el costo es 
+     *
+     * @param lista lista que se desea ordenar.
+     * @return la misma lista, ya ordenada.
+     */
+    public static ListaDoblementeEnlazada<Integer> bubbleSort(ListaDoblementeEnlazada<Integer> lista) {
+        if (lista == null || lista.esVacia()) {
+            return lista;
         }
+
+        boolean cambiado;
+        do {
+            cambiado = false;
+            Nodo<Integer> actual = lista.getCabeza();
+
+            while (actual != null && actual.getSiguiente() != null) {
+                Nodo<Integer> siguiente = actual.getSiguiente();
+
+                if (actual.getDato() > siguiente.getDato()) {
+                    Integer temp = actual.getDato();
+                    actual.setDato(siguiente.getDato());
+                    siguiente.setDato(temp);
+                    cambiado = true;
+                }
+
+                actual = siguiente;
+            }
+        } while (cambiado);
+
         return lista;
     }
 
