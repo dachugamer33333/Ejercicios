@@ -8,31 +8,32 @@ import mx.unam.fes.dinamico.Cola;
  * 3.reordena la cola para que quede de manera acendente de nuevo
  */
 public class Estacionamiento {
-	private Cola<Integer> estacionamiento = new Cola<>();
-	private int cupo;
-	public Estacionamiento(int cupo) {
-		
-		this.cupo = cupo;
-		for(int i = 1; i<= cupo;i++)
-		{
-			estacionamiento.agregar(i);
-		}
-	}
+	private Cola<Integer> estacionamiento = new Cola<>(10);
+	
+
 	
 	public boolean sacarTicket(int ticket)
 	{
 		int n = estacionamiento.getLongitud();
-		for(int i = 0; i < n; i++)
+		if(!estacionamiento.esVacia())
 		{
-			int frente = estacionamiento.recuperar();
-			if(frente == ticket)
+			for(int i = 0; i < n; i++)
 			{
-				estacionamiento.sacar();
-				return true;
+				int frente = estacionamiento.recuperar();
+				if(frente == ticket)
+				{
+					estacionamiento.sacar();
+					return true;
+				}
+				estacionamiento.agregar(estacionamiento.sacar());
 			}
-			estacionamiento.agregar(estacionamiento.sacar());
 		}
+		
 		return false;
+	}
+	public void Agregar(int valor)
+	{
+		estacionamiento.agregar(valor);
 	}
 	public void reordenar()
 	{
@@ -71,8 +72,14 @@ public class Estacionamiento {
 		}
 	}
 
-	public Cola<Integer> getEstacionamiento() {
-		return estacionamiento;
+	public boolean esVacia()
+	{
+		return estacionamiento.esVacia();
+	}
+	
+	public void imprimir()
+	{
+		estacionamiento.imprimir();
 	}
 	
 	
